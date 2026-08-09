@@ -86,3 +86,16 @@ function addPoints() {
   points += 10;
   document.getElementById("points").textContent = points;
 }
+const quotes = [
+  "You can do this! ✨",
+  "Small steps still move you forward. 🌷",
+  "Believe in yourself. 💗",
+  "Progress, not perfection. 🌟",
+  "You've got this! 💪",
+  "Make today count. ☀️"
+];
+
+function newQuote() {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  document.getElementById("quote").textContent = quotes[randomIndex];
+}
