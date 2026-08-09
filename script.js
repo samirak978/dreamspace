@@ -56,3 +56,22 @@ function resetTimer() {
 }
 
 updateTimer();
+function addPlan() {
+  const input = document.getElementById("planInput");
+  const plan = input.value.trim();
+
+  if (plan === "") {
+    return;
+  }
+
+  const li = document.createElement("li");
+  li.textContent = plan;
+
+  li.onclick = function() {
+    li.style.textDecoration = "line-through";
+  };
+
+  document.getElementById("planList").appendChild(li);
+
+  input.value = "";
+}
