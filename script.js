@@ -19,7 +19,7 @@ function addTask() {
 };
 
   document.getElementById("taskList").appendChild(li);
-
+saveTasks();
   input.value = "";
 }
 let timeLeft = 25 * 60;
@@ -181,4 +181,16 @@ function stopSound() {
     } catch (error) {}
     soundSource = null;
   }
+}
+function saveTasks() {
+  const tasks = [];
+
+  document.querySelectorAll("#taskList li").forEach(function(li) {
+    tasks.push({
+      text: li.textContent,
+      completed: li.style.textDecoration === "line-through"
+    });
+  });
+
+  localStorage.setItem("dreamSpaceTasks", JSON.stringify(tasks));
 }
