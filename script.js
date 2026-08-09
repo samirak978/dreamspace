@@ -260,3 +260,22 @@ function loadTasks() {
 }
 
 loadTasks();
+function oceanSound() {
+  startAudio();
+  stopSound();
+
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.value = 0.15;
+
+  gain.gain.value = 0.08;
+
+  oscillator.connect(gain);
+  gain.connect(masterGain);
+
+  oscillator.start();
+
+  soundSource = oscillator;
+}
