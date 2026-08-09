@@ -312,3 +312,37 @@ function oceanSound() {
 
   soundSource = oscillator;
 }
+function fireplaceSound() {
+  startAudio();
+  stopSound();
+
+  const bufferSize = audioContext.sampleRate * 3;
+  const buffer = audioContext.createBuffer(
+    1,
+    bufferSize,
+    audioContext.sampleRate
+  );
+
+  const data = buffer.getChannelData(0);
+
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * 0.06;
+  }
+
+  soundSource = audioContext.createBufferSource();
+  soundSource.buffer = buffer;
+  soundSource.loop = true;
+
+  const filter = audioContext.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.value = 1800;
+
+  const crackleGain = audioContext.createGain();
+  crackleGain.gain.value = 0.7;
+
+  soundSource.connect(filter);
+  filter.connect(crackleGain);
+  crackleGain.connect(masterGain);
+
+  soundSource.start();
+}
