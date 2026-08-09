@@ -118,3 +118,67 @@ function resetTheme() {
   document.body.style.background = "#ffffff";
   document.body.style.color = "#222222";
 }
+let audioContext;
+let soundSource;
+
+function startAudio() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+}
+
+function rainSound() {
+  startAudio();
+  stopSound();
+
+  const bufferSize = audioContext.sampleRate * 2;
+  const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+  const data = buffer.getChannelData(0);
+
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * 0.12;
+  }
+
+  soundSource = audioContext.createBufferSource();
+  soundSource.buffer = buffer;
+  soundSource.loop = true;
+
+  const gain = audioContext.createGain();
+  gain.gain.value = 0.25;
+
+  soundSource.connect(gain);
+  gain.connect(audioContext.destination);
+  soundSource.start();
+}
+
+function cafeSound() {
+  startAudio();
+  stopSound();
+
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.value = 180;
+  gain.gain.value = 0.015;
+
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+
+  oscillator.start();
+
+  soundSource = oscillator;
+}
+
+function stopSound() {
+  if (soundSource) {
+    try {
+      soundSource.stop();
+    } catch (error) {}
+    soundSource = null;
+  }
+}
