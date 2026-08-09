@@ -264,6 +264,39 @@ function oceanSound() {
   startAudio();
   stopSound();
 
+  const bufferSize = audioContext.sampleRate * 4;
+  const buffer = audioContext.createBuffer(
+    1,
+    bufferSize,
+    audioContext.sampleRate
+  );
+
+  const data = buffer.getChannelData(0);
+
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * 0.12;
+  }
+
+  soundSource = audioContext.createBufferSource();
+  soundSource.buffer = buffer;
+  soundSource.loop = true;
+
+  const filter = audioContext.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.value = 900;
+
+  const waveGain = audioContext.createGain();
+  waveGain.gain.value = 0.4;
+
+  soundSource.connect(filter);
+  filter.connect(waveGain);
+  waveGain.connect(masterGain);
+
+  soundSource.start();
+}
+  startAudio();
+  stopSound();
+
   const oscillator = audioContext.createOscillator();
   const gain = audioContext.createGain();
 
