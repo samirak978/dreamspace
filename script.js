@@ -99,3 +99,22 @@ function newQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   document.getElementById("quote").textContent = quotes[randomIndex];
 }
+function pinkTheme() {
+  document.body.style.background = "#fceef5";
+  document.body.style.color = "#4a3040";
+}
+
+function blueTheme() {
+  document.body.style.background = "#eaf4ff";
+  document.body.style.color = "#304a5c";
+}
+
+function purpleTheme() {
+  document.body.style.background = "#f3eaff";
+  document.body.style.color = "#49305c";
+}
+
+function resetTheme() {
+  document.body.style.background = "#ffffff";
+  document.body.style.color = "#222222";
+}
