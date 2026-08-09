@@ -59,9 +59,42 @@
 <button onclick="resetTheme()">✨ Reset</button>
 <h2>🎧 Sounds</h2>
 
-<button onclick="rainSound()">🌧️ Rain</button>
-<button onclick="cafeSound()">☕ Cafe</button>
-<button onclick="stopSound()">⏹️ Stop</button>
+<div class="sound-box">
+  <button onclick="rainSound()">🌧️ Rain</button>
+  <button onclick="cafeSound()">☕ Cafe</button>
+  <button onclick="stopSound()">⏹️ Stop</button>
+
+  <br>
+
+  <label for="volume">🔊 Volume</label>
+  <input
+    type="range"
+    id="volume"
+    min="0"
+    max="1"
+    step="0.05"
+    value="0.25"
+    onchange="changeVolume()"
+  >
+</div>
+
+<audio id="backgroundSound" loop></audio>
+
+  <br>
+
+  <label for="volume">🔊 Volume</label>
+  <input
+    type="range"
+    id="volume"
+    min="0"
+    max="1"
+    step="0.05"
+    value="0.25"
+    onchange="changeVolume()"
+  >
+</div>
+
+<audio id="backgroundSound" loop></audio>
 
 <audio id="backgroundSound" loop></audio>4
 </body>
