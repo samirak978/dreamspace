@@ -189,7 +189,7 @@ document.getElementById("nowPlaying").textContent = "🌧️ Now playing: Rain";
 function cafeSound() {
   startAudio();
   stopSound();
-
+document.getElementById("nowPlaying").textContent = "☕ Now playing: Cafe";
   const oscillator = audioContext.createOscillator();
   const gain = audioContext.createGain();
 
@@ -206,6 +206,8 @@ function cafeSound() {
 }
 
 function stopSound() {
+  document.getElementById("nowPlaying").textContent = "🎵 No sound playing";
+  
   if (soundSource) {
     try {
       soundSource.stop();
@@ -263,7 +265,7 @@ loadTasks();
 function oceanSound() {
   startAudio();
   stopSound();
-
+document.getElementById("nowPlaying").textContent = "🌊 Now playing: Ocean";
   const bufferSize = audioContext.sampleRate * 4;
   const buffer = audioContext.createBuffer(
     1,
@@ -315,7 +317,7 @@ function oceanSound() {
 function fireplaceSound() {
   startAudio();
   stopSound();
-
+document.getElementById("nowPlaying").textContent = "🔥 Now playing: Fireplace";
   const bufferSize = audioContext.sampleRate * 3;
   const buffer = audioContext.createBuffer(
     1,
@@ -349,7 +351,7 @@ function fireplaceSound() {
 function natureSound() {
   startAudio();
   stopSound();
-
+document.getElementById("nowPlaying").textContent = "🌿 Now playing: Nature";
   const bufferSize = audioContext.sampleRate * 4;
   const buffer = audioContext.createBuffer(
     1,
