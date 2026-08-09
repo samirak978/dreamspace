@@ -80,3 +80,9 @@ function addPlan() {
 
   input.value = "";
 }
+let points = 0;
+
+function addPoints() {
+  points += 10;
+  document.getElementById("points").textContent = points;
+}
