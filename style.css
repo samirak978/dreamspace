@@ -4,14 +4,61 @@ body {
   color: #4a3040;
   text-align: center;
   margin: 0;
-  padding: 40px 20px;
+  padding: 30px 15px;
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 38px;
   margin-bottom: 10px;
 }
 
-p {
-  font-size: 18px;
+h2 {
+  margin-top: 35px;
+}
+
+button {
+  background: white;
+  border: 2px solid #e8bfd2;
+  border-radius: 12px;
+  padding: 10px 16px;
+  margin: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+input {
+  padding: 11px;
+  border: 2px solid #e8bfd2;
+  border-radius: 10px;
+  font-size: 15px;
+  margin: 5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: white;
+  margin: 8px auto;
+  padding: 12px;
+  border-radius: 12px;
+  max-width: 400px;
+  cursor: pointer;
+}
+
+#timer {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 15px;
+}
+
+#quote {
+  font-size: 20px;
+  font-style: italic;
 }
