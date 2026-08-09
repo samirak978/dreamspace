@@ -131,27 +131,58 @@ function startAudio() {
   }
 }
 
+let audioContext;
+let soundSource;
+let masterGain;
+
+function startAudio() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    masterGain = audioContext.createGain();
+    masterGain.gain.value = 0.25;
+    masterGain.connect(audioContext.destination);
+  }
+
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+}
+
+function changeVolume() {
+  if (masterGain) {
+    masterGain.gain.value = Number(document.getElementById("volume").value);
+  }
+}
+
 function rainSound() {
   startAudio();
   stopSound();
 
   const bufferSize = audioContext.sampleRate * 2;
-  const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+  const buffer = audioContext.createBuffer(
+    1,
+    bufferSize,
+    audioContext.sampleRate
+  );
+
   const data = buffer.getChannelData(0);
 
   for (let i = 0; i < bufferSize; i++) {
-    data[i] = (Math.random() * 2 - 1) * 0.12;
+    data[i] = (Math.random() * 2 - 1) * 0.08;
   }
 
   soundSource = audioContext.createBufferSource();
   soundSource.buffer = buffer;
   soundSource.loop = true;
 
-  const gain = audioContext.createGain();
-  gain.gain.value = 0.25;
+  const filter = audioContext.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.value = 3500;
 
-  soundSource.connect(gain);
-  gain.connect(audioContext.destination);
+  soundSource.connect(filter);
+  filter.connect(masterGain);
+
   soundSource.start();
 }
 
@@ -163,11 +194,11 @@ function cafeSound() {
   const gain = audioContext.createGain();
 
   oscillator.type = "sine";
-  oscillator.frequency.value = 180;
-  gain.gain.value = 0.015;
+  oscillator.frequency.value = 140;
+  gain.gain.value = 0.02;
 
   oscillator.connect(gain);
-  gain.connect(audioContext.destination);
+  gain.connect(masterGain);
 
   oscillator.start();
 
@@ -175,6 +206,14 @@ function cafeSound() {
 }
 
 function stopSound() {
+  if (soundSource) {
+    try {
+      soundSource.stop();
+    } catch (error) {}
+
+    soundSource = null;
+  }
+}
   if (soundSource) {
     try {
       soundSource.stop();
