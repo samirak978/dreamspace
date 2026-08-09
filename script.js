@@ -10,8 +10,13 @@ function addTask() {
   li.textContent = task;
 
   li.onclick = function() {
+  if (li.style.textDecoration !== "line-through") {
     li.style.textDecoration = "line-through";
-  };
+
+    const counter = document.getElementById("completedCount");
+    counter.textContent = Number(counter.textContent) + 1;
+  }
+};
 
   document.getElementById("taskList").appendChild(li);
 
