@@ -158,7 +158,7 @@ function changeVolume() {
 function rainSound() {
   startAudio();
   stopSound();
-
+document.getElementById("nowPlaying").textContent = "🌧️ Now playing: Rain";
   const bufferSize = audioContext.sampleRate * 2;
   const buffer = audioContext.createBuffer(
     1,
