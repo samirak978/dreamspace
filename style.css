@@ -62,3 +62,15 @@ li {
   font-size: 20px;
   font-style: italic;
 }
+.welcome-box {
+  background: white;
+  max-width: 600px;
+  margin: 25px auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(120, 80, 100, 0.12);
+}
+
+.welcome-box h2 {
+  margin-top: 0;
+}
