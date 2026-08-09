@@ -382,3 +382,18 @@ document.getElementById("nowPlaying").textContent = "🌿 Now playing: Nature";
 
   soundSource.start();
 }
+function updateStreak() {
+  const today = new Date().toDateString();
+  const lastVisit = localStorage.getItem("dreamSpaceLastVisit");
+  let streak = Number(localStorage.getItem("dreamSpaceStreak")) || 0;
+
+  if (lastVisit !== today) {
+    streak++;
+    localStorage.setItem("dreamSpaceStreak", streak);
+    localStorage.setItem("dreamSpaceLastVisit", today);
+  }
+
+  document.getElementById("streak").textContent = streak;
+}
+
+updateStreak();
