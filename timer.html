@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
+  <style>
+#timer {
+  font-size: 80px;
+  font-family: Georgia, serif;
+  text-align: center;
+  margin: 40px 0;
+  letter-spacing: 3px;
+}
+</style>
 <head>
-  <title>Dream Space - Focus Timer</title>
+  <title>dreamspace - Focus Timer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <h1>⏱️ Focus Timer</h1>
+  <h1>⏱️ focus timer</h1>
 
   <button onclick="location.href='index.html'">🏠 Home</button>
 
   <div id="timer-page">
-    <h2 id="timer">25:00</h2>
+    <h1 id="timer">25:00</h1>
 
     <button onclick="startTimer()">▶️ Start</button>
     <button onclick="pauseTimer()">⏸️ Pause</button>
