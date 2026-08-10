@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
   <style>
+  
+  button {
+  font-size: 20px;
+  padding: 14px 26px;
+  margin: 8px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+  
 #timer {
   font-size: 100px; !important;
   font-family: Georgia, serif;
@@ -27,18 +40,6 @@
     <button onclick="pauseTimer()">⏸️ Pause</button>
     <button onclick="resetTimer()">🔄 Reset</button>
   </div>
-
-  button {
-  font-size: 20px;
-  padding: 14px 26px;
-  margin: 8px;
-  border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
 
   <script>
 let timeLeft = 25 * 60;
