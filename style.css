@@ -93,3 +93,24 @@ li:hover {
   width: 180px;
   vertical-align: middle;
 }
+/* Daily Planner */
+.planner-box {
+  background: white;
+  border: 2px solid #e8bfd2;
+  border-radius: 16px;
+  padding: 15px;
+  margin: 15px auto;
+  max-width: 500px;
+}
+
+.planner-box h3 {
+  margin-top: 0;
+}
+
+.planner-box input {
+  width: 90%;
+  padding: 12px;
+  border: 1px solid #e8bfd2;
+  border-radius: 10px;
+  font-size: 15px;
+}
