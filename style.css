@@ -114,3 +114,50 @@ li:hover {
   border-radius: 10px;
   font-size: 15px;
 }
+/* Weekly Calendar */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 1100px;
+}
+
+.day {
+  background: #fffafd;
+  border: 2px solid #e8bfd2;
+  border-radius: 16px;
+  padding: 10px;
+  min-height: 250px;
+}
+
+.day h3 {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.event {
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.event input {
+  width: 90%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+}
+
+.academic {
+  background: #f8d9e6;
+}
+
+.athletics {
+  background: #d9eafa;
+}
+
+.other {
+  background: #fff3c4;
+}
