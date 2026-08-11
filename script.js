@@ -389,8 +389,8 @@ function updateStreak() {
 
   if (lastVisit !== today) {
     streak++;
-    localStorage.setItem("dreamSpaceStreak", streak);
-    localStorage.setItem("dreamSpaceLastVisit", today);
+    localStorage.setItem("dreamspaceStreak", streak);
+    localStorage.setItem("dreamspaceLastVisit", today);
   }
 
   document.getElementById("streak").textContent = streak;
