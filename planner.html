@@ -301,10 +301,16 @@ document.querySelector(".save-event-button").addEventListener("click", function(
 
   const name = document.getElementById("event-name").value.trim();
   const day = document.getElementById("event-day").value;
-  const time = document.getElementById("event-time").value;
+  const start = parseFloat(document.getElementById("event-start").value);
+  const end = parseFloat(document.getElementById("event-end").value);
 
   if (name === "") {
     alert("Please enter an event name!");
+    return;
+  }
+
+  if (end <= start) {
+    alert("The end time needs to be after the start time!");
     return;
   }
 
@@ -312,28 +318,42 @@ document.querySelector(".save-event-button").addEventListener("click", function(
 
   days.forEach(function(calendarDay) {
 
-    const dayName = calendarDay.querySelector(".day-header span").textContent;
+    const dayName =
+      calendarDay.querySelector(".day-header span").textContent;
 
     if (dayName === day.substring(0, 3).toUpperCase()) {
 
-      const times = [
-        "8 AM", "9 AM", "10 AM", "11 AM",
-        "12 PM", "1 PM", "2 PM", "3 PM",
-        "4 PM", "5 PM", "6 PM", "7 PM", "8 PM"
-      ];
+      const hourRows = calendarDay.querySelectorAll(".hour");
 
-      const timeIndex = times.indexOf(time);
-      const hour = calendarDay.querySelectorAll(".hour")[timeIndex];
+      /*
+        Our calendar starts at 8 AM.
+        Each hour is 70px tall.
+        A half-hour is therefore 35px.
+      */
 
-      if (hour) {
-        const event = document.createElement("div");
-        event.className = "calendar-event";
-        event.textContent = name;
+      const top = (start - 8) * 70;
+      const height = (end - start) * 70;
 
-        hour.appendChild(event);
-      }
+      const event = document.createElement("div");
+
+      event.className = "calendar-event";
+      event.textContent = name;
+
+      event.style.position = "absolute";
+      event.style.top = top + "px";
+      event.style.height = height + "px";
+      event.style.left = "5px";
+      event.style.right = "5px";
+      event.style.boxSizing = "border-box";
+
+      calendarDay.appendChild(event);
     }
   });
+
+  document.getElementById("event-name").value = "";
+
+  closeEventForm();
+});
 
   document.getElementById("event-name").value = "";
   closeEventForm();
