@@ -259,6 +259,48 @@ function openEventForm() {
 function closeEventForm() {
   document.getElementById("event-form").style.display = "none";
 }
+
+document.querySelector(".save-event-button").addEventListener("click", function() {
+
+  const name = document.getElementById("event-name").value.trim();
+  const day = document.getElementById("event-day").value;
+  const time = document.getElementById("event-time").value;
+
+  if (name === "") {
+    alert("Please enter an event name!");
+    return;
+  }
+
+  const days = document.querySelectorAll(".calendar-day");
+
+  days.forEach(function(calendarDay) {
+
+    const dayName = calendarDay.querySelector(".day-header span").textContent;
+
+    if (dayName === day.substring(0, 3).toUpperCase()) {
+
+      const times = [
+        "8 AM", "9 AM", "10 AM", "11 AM",
+        "12 PM", "1 PM", "2 PM", "3 PM",
+        "4 PM", "5 PM", "6 PM", "7 PM", "8 PM"
+      ];
+
+      const timeIndex = times.indexOf(time);
+      const hour = calendarDay.querySelectorAll(".hour")[timeIndex];
+
+      if (hour) {
+        const event = document.createElement("div");
+        event.className = "calendar-event";
+        event.textContent = name;
+
+        hour.appendChild(event);
+      }
+    }
+  });
+
+  document.getElementById("event-name").value = "";
+  closeEventForm();
+});
 </script>
 
 </body>
