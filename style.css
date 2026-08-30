@@ -339,3 +339,43 @@ li:hover {
   z-index: 5;
   box-shadow: 0 2px 6px rgba(80, 50, 70, 0.08);
 }
+/* Simple Dreamspace To-Do List */
+
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#taskList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+  margin: 8px 0;
+  color: #49313f;
+  font-size: 16px;
+  border-bottom: 1px solid #f1dce6;
+}
+
+#taskList li input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #e8bfd2;
+  cursor: pointer;
+}
+
+.delete-task {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+#pointsDisplay {
+  margin: 15px 0;
+  color: #49313f;
+  font-weight: 600;
+  font-size: 17px;
+}
