@@ -1,3 +1,15 @@
+let points = Number(localStorage.getItem("dreamSpacePoints")) || 0;
+
+function updatePoints() {
+  const pointsDisplay = document.getElementById("points");
+
+  if (pointsDisplay) {
+    pointsDisplay.textContent = points;
+  }
+
+  localStorage.setItem("dreamSpacePoints", points);
+}
+
 function addTask() {
   const input = document.getElementById("taskInput");
   const task = input.value.trim();
@@ -7,21 +19,110 @@ function addTask() {
   }
 
   const li = document.createElement("li");
-  li.textContent = task;
 
-  li.onclick = function() {
-  if (li.style.textDecoration !== "line-through") {
-    li.style.textDecoration = "line-through";
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
 
-    const counter = document.getElementById("completedCount");
-    counter.textContent = Number(counter.textContent) + 1;
-  }
-};
+  const taskText = document.createElement("span");
+  taskText.textContent = task;
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "🗑️";
+  deleteButton.className = "delete-task";
+
+  checkbox.onclick = function(event) {
+    event.stopPropagation();
+
+    if (checkbox.checked) {
+      points += 10;
+      updatePoints();
+
+      li.remove();
+      saveTasks();
+    }
+  };
+
+  deleteButton.onclick = function(event) {
+    event.stopPropagation();
+
+    li.remove();
+    saveTasks();
+  };
+
+  li.appendChild(checkbox);
+  li.appendChild(taskText);
+  li.appendChild(deleteButton);
 
   document.getElementById("taskList").appendChild(li);
-saveTasks();
+
   input.value = "";
+
+  saveTasks();
 }
+
+function saveTasks() {
+  const tasks = [];
+
+  document.querySelectorAll("#taskList li").forEach(function(li) {
+    const checkbox = li.querySelector("input[type='checkbox']");
+    const taskText = li.querySelector("span");
+
+    tasks.push({
+      text: taskText.textContent,
+      completed: checkbox.checked
+    });
+  });
+
+  localStorage.setItem("dreamSpaceTasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  const savedTasks =
+    JSON.parse(localStorage.getItem("dreamSpaceTasks")) || [];
+
+  savedTasks.forEach(function(task) {
+    const li = document.createElement("li");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+
+    const taskText = document.createElement("span");
+    taskText.textContent = task.text;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "🗑️";
+    deleteButton.className = "delete-task";
+
+    checkbox.onclick = function(event) {
+      event.stopPropagation();
+
+      if (checkbox.checked) {
+        points += 10;
+        updatePoints();
+
+        li.remove();
+        saveTasks();
+      }
+    };
+
+    deleteButton.onclick = function(event) {
+      event.stopPropagation();
+
+      li.remove();
+      saveTasks();
+    };
+
+    li.appendChild(checkbox);
+    li.appendChild(taskText);
+    li.appendChild(deleteButton);
+
+    document.getElementById("taskList").appendChild(li);
+  });
+}
+
+updatePoints();
+loadTasks();
+
 let timeLeft = 25 * 60;
 let timerInterval = null;
 
