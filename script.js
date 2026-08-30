@@ -181,12 +181,6 @@ function addPlan() {
 
   input.value = "";
 }
-let points = 0;
-
-function addPoints() {
-  points += 10;
-  document.getElementById("points").textContent = points;
-}
 const quotes = [
   "You can do this! ✨",
   "Small steps still move you forward. 🌷",
