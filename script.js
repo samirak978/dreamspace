@@ -118,8 +118,6 @@ function resetTheme() {
   document.body.style.background = "#ffffff";
   document.body.style.color = "#222222";
 }
-let audioContext;
-let soundSource;
 
 function startAudio() {
   if (!audioContext) {
@@ -296,24 +294,7 @@ document.getElementById("nowPlaying").textContent = "🌊 Now playing: Ocean";
 
   soundSource.start();
 }
-  startAudio();
-  stopSound();
 
-  const oscillator = audioContext.createOscillator();
-  const gain = audioContext.createGain();
-
-  oscillator.type = "sine";
-  oscillator.frequency.value = 0.15;
-
-  gain.gain.value = 0.08;
-
-  oscillator.connect(gain);
-  gain.connect(masterGain);
-
-  oscillator.start();
-
-  soundSource = oscillator;
-}
 function fireplaceSound() {
   startAudio();
   stopSound();
