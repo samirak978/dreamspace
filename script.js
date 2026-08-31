@@ -323,44 +323,6 @@ document.getElementById("nowPlaying").textContent = "☕ Now playing: Cafe";
 
 function stopSound() {
   document.getElementById("nowPlaying").textContent = "🎵 No sound playing";
-  
-  if (soundSource) {
-    try {
-      soundSource.stop();
-    } catch (error) {}
-
-    soundSource = null;
-  }
-}
-  if (soundSource) {
-    try {
-      soundSource.stop();
-    } catch (error) {}
-    soundSource = null;
-  }
-}
-function saveTasks() {
-  const tasks = [];
-
-  document.querySelectorAll("#taskList li").forEach(function(li) {
-    tasks.push({
-      text: li.textContent,
-      completed: li.style.textDecoration === "line-through"
-    });
-  });
-
-  localStorage.setItem("dreamSpaceTasks", JSON.stringify(tasks));
-}
-function loadTasks() {
-  const savedTasks = JSON.parse(localStorage.getItem("dreamSpaceTasks")) || [];
-
-  savedTasks.forEach(function(task) {
-    const li = document.createElement("li");
-    li.textContent = task.text;
-
-    if (task.completed) {
-      li.style.textDecoration = "line-through";
-    }
 
     li.onclick = function() {
       if (li.style.textDecoration !== "line-through") {
