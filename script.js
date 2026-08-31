@@ -323,24 +323,6 @@ document.getElementById("nowPlaying").textContent = "☕ Now playing: Cafe";
   soundSource = oscillator;
 }
 
-function stopSound() {
-  document.getElementById("nowPlaying").textContent = "🎵 No sound playing";
-
-    li.onclick = function() {
-      if (li.style.textDecoration !== "line-through") {
-        li.style.textDecoration = "line-through";
-
-        const counter = document.getElementById("completedCount");
-        counter.textContent = Number(counter.textContent) + 1;
-
-        saveTasks();
-      }
-    };
-
-    document.getElementById("taskList").appendChild(li);
-  });
-}
-
 loadTasks();
 function oceanSound() {
   startAudio();
