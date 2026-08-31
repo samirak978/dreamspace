@@ -142,10 +142,13 @@ function startTimer() {
       timeLeft--;
       updateTimer();
     } else {
-      clearInterval(timerInterval);
-      timerInterval = null;
-      alert("Focus session complete! 🎉");
-    }
+  clearInterval(timerInterval);
+  timerInterval = null;
+
+  playTimerSound();
+
+  alert("Focus session complete! 🎉");
+}
   }, 1000);
 }
 
