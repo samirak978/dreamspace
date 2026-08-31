@@ -184,7 +184,9 @@ function resetTimer() {
   updateTimer();
 }
 
-updateTimer();
+if (document.getElementById("timer")) {
+  updateTimer();
+}
 function addPlan() {
   const input = document.getElementById("planInput");
   const plan = input.value.trim();
