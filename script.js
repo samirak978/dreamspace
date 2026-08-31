@@ -151,7 +151,27 @@ function startTimer() {
 }
   }, 1000);
 }
+function playTimerSound() {
+  startAudio();
 
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.value = 880;
+
+  gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioContext.currentTime + 1
+  );
+
+  oscillator.connect(gain);
+  gain.connect(masterGain);
+
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime + 1);
+}
 function pauseTimer() {
   clearInterval(timerInterval);
   timerInterval = null;
