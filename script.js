@@ -322,7 +322,19 @@ document.getElementById("nowPlaying").textContent = "☕ Now playing: Cafe";
 
   soundSource = oscillator;
 }
+function stopSound() {
+  if (document.getElementById("nowPlaying")) {
+    document.getElementById("nowPlaying").textContent = "🎵 No sound playing";
+  }
 
+  if (soundSource) {
+    try {
+      soundSource.stop();
+    } catch (error) {}
+
+    soundSource = null;
+  }
+}
 loadTasks();
 function oceanSound() {
   startAudio();
