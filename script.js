@@ -459,7 +459,9 @@ function updateStreak() {
   document.getElementById("streak").textContent = streak;
 }
 
-updateStreak();
+if (document.getElementById("streak")) {
+  updateStreak();
+}
 const taskInput = document.getElementById("taskInput");
 
 if (taskInput) {
