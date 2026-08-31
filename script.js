@@ -496,3 +496,12 @@ function updateStreak() {
 }
 
 updateStreak();
+const taskInput = document.getElementById("taskInput");
+
+if (taskInput) {
+  taskInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      addTask();
+    }
+  });
+}
