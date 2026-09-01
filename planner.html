@@ -313,7 +313,8 @@ document.querySelector(".save-event-button").addEventListener("click", function(
   const day = document.getElementById("event-day").value;
   const start = parseFloat(document.getElementById("event-start").value);
   const end = parseFloat(document.getElementById("event-end").value);
-
+  const color = document.getElementById("event-color").value;
+  
   if (name === "") {
     alert("Please enter an event name!");
     return;
